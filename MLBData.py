@@ -34,9 +34,11 @@ def Dates(fileName,split=False,N=0):
 		   if(datetime.datetime.strptime(row[0], '%Y%m%d').date() not in Dates):
 	   		Dates.append(datetime.datetime.strptime(row[0], '%Y%m%d').date())
 
-	Dates.sort(reverse=True)
 
+        Dates.sort()
 	TestDate=Dates[len(Dates)-1]
+        Dates.remove(Dates[len(Dates)-1])
+	Dates.sort(reverse=True)
 	numberTestDates=random.randrange(3,7)
 	numberTestDates=7
 	i=7
@@ -102,9 +104,12 @@ def LoadData_RandTstDates(fileName):
 
 def LoadData_RandTstDates_NFold(fileName, N):
     TrainDates,ValidationDates,TestDate=Dates(fileName,True,N)
-    print TrainDates
+    """print TrainDates
+    print "val " 
     print ValidationDates
+    print "TEST "
     print TestDate
+    sys.exit()"""
 
     inputData=[[] for _ in range(len(TrainDates))]
     outputData=[[] for _ in range(len(TrainDates))]

@@ -5,7 +5,7 @@ import MLBData
 def Run(NetworkParameters):
 	if(NetworkParameters["NFoldCrossValidation"]):
 
-		TrainingIn,TrainingOut,ValidationIn,ValidationOut,TestIn,TestOut,TestDataForCSV=MLBData.LoadData_RandTstDates_NFold('inputfiles/20160724_1B.csv',NetworkParameters["N"])
+		TrainingIn,TrainingOut,ValidationIn,ValidationOut,TestIn,TestOut,TestDataForCSV=MLBData.LoadData_RandTstDates_NFold('inputfiles/20160716_2params.csv',NetworkParameters["N"])
 		
 		for trainingData in TrainingIn:
 			index=TrainingIn.index(trainingData)
@@ -28,14 +28,15 @@ N=5 If you want Nfold By dates set N='Dates'
 """
 
 
-Run({"hiddenDim":3,
-"learningRate":.05,
-"miniBtch_StochastGradTrain":False,"miniBtch_StochastGradTrain_Split":250,
-"trainingIterations":25000,
+Run({"hiddenDim":2,
+"learningRate":.005,
+"miniBtch_StochastGradTrain":"Stochastic","miniBtch_StochastGradTrain_Split":250,
+"trainingIterations":5000,
 "momentum":.1,
 "dropout":True,"dropoutPercent":0.65,
 "biasLayer1TF":True,"addInputBias":True,
-"NFoldCrossValidation":True,"N":'Dates',
+"NFoldCrossValidation":False,#"N":'Dates',
+"N":5,
 "shuffle":True
 }
 )	
